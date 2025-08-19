@@ -1,0 +1,24 @@
+# AutoGen Multi-Agent Code Generation System Dependencies
+
+# Core dependencies
+autogen-agentchat>=0.2.0
+autogen-ext[openai]>=0.2.0
+fastapi>=0.100.0
+uvicorn[standard]>=0.20.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+python-dotenv>=1.0.0
+
+# Testing dependencies
+pytest>=7.0.0
+pytest-asyncio>=0.20.0
+httpx>=0.23.0
+requests>=2.28.0
+
+# Code quality and validation
+pycodestyle>=2.10.0
+pyflakes>=3.0.0
+astroid>=2.12.0
+
+# Utilities
+typing-extensions>=4.0.0
