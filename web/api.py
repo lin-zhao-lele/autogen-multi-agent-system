@@ -27,6 +27,7 @@ class TaskStatusResponse(BaseModel):
     """Response model for task status."""
     task_id: str
     status: str  # pending, processing, completed, failed
+    current_step: Optional[str] = None  # requirements, codegen, review, optimization, testing
     result: Optional[Dict[str, Any]] = None
     error: Optional[str] = None
     created_at: datetime
@@ -47,10 +48,6 @@ tasks_storage = {}
 async def process_code_generation(task_id: str, request: CodeGenerationRequest):
     """Process code generation in the background."""
     try:
-        # Update task status
-        tasks_storage[task_id]["status"] = "processing"
-        tasks_storage[task_id]["updated_at"] = datetime.now()
-        
         # Import agents here to avoid circular imports
         from agents.requirements_agent import analyze_requirements
         from agents.codegen_agent import generate_code
@@ -59,22 +56,34 @@ async def process_code_generation(task_id: str, request: CodeGenerationRequest):
         from agents.testing_agent import generate_tests
         
         # Step 1: Analyze requirements
+        tasks_storage[task_id]["status"] = "processing"
+        tasks_storage[task_id]["current_step"] = "requirements"
+        tasks_storage[task_id]["updated_at"] = datetime.now()
         specification = await analyze_requirements(request.requirements)
         
         # Step 2: Generate code
+        tasks_storage[task_id]["current_step"] = "codegen"
+        tasks_storage[task_id]["updated_at"] = datetime.now()
         generated_code = await generate_code(specification)
         
         # Step 3: Review code
+        tasks_storage[task_id]["current_step"] = "review"
+        tasks_storage[task_id]["updated_at"] = datetime.now()
         review_result = await review_code(generated_code)
         
         # Step 4: Optimize code
+        tasks_storage[task_id]["current_step"] = "optimization"
+        tasks_storage[task_id]["updated_at"] = datetime.now()
         optimization_result = await optimize_code(generated_code)
         
         # Step 5: Generate tests
+        tasks_storage[task_id]["current_step"] = "testing"
+        tasks_storage[task_id]["updated_at"] = datetime.now()
         test_result = await generate_tests(generated_code)
         
         # Store final result
         tasks_storage[task_id]["status"] = "completed"
+        tasks_storage[task_id]["current_step"] = None
         tasks_storage[task_id]["result"] = {
             "specification": specification,
             "generated_code": generated_code,
@@ -87,6 +96,7 @@ async def process_code_generation(task_id: str, request: CodeGenerationRequest):
     except Exception as e:
         # Store error
         tasks_storage[task_id]["status"] = "failed"
+        tasks_storage[task_id]["current_step"] = None
         tasks_storage[task_id]["error"] = str(e)
         tasks_storage[task_id]["updated_at"] = datetime.now()
 
@@ -105,7 +115,7 @@ async def get_api_info():
 
 
 @api_router.post("/generate-code", response_model=CodeGenerationResponse)
-async def generate_code(request: CodeGenerationRequest):
+async def generate_code_endpoint(request: CodeGenerationRequest):
     """Generate code based on requirements."""
     # Create a task ID
     task_id = str(uuid.uuid4())
@@ -113,6 +123,7 @@ async def generate_code(request: CodeGenerationRequest):
     # Store initial task status
     tasks_storage[task_id] = {
         "status": "pending",
+        "current_step": None,
         "result": None,
         "error": None,
         "created_at": datetime.now(),
@@ -138,6 +149,7 @@ async def get_code_status(task_id: str):
     return TaskStatusResponse(
         task_id=task_id,
         status=task["status"],
+        current_step=task["current_step"],
         result=task["result"],
         error=task["error"],
         created_at=task["created_at"],
