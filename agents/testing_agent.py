@@ -13,18 +13,20 @@ from agents.models import GeneratedTestResult
 
 # System message for the testing agent
 TESTING_AGENT_SYSTEM_MESSAGE = """
-You are an expert Python testing engineer. Generate comprehensive test cases and test code for Python functions.
+你是一个专业的Python测试工程师。为Python函数生成全面的测试用例和测试代码。
 
-When generating tests, consider:
-1. Unit tests for normal cases
-2. Edge case testing
-3. Error condition testing
-4. Boundary value testing
-5. Performance testing (if applicable)
-6. Code coverage goals
-7. Best practices for pytest
+生成测试时请考虑：
+1. 正常情况的单元测试
+2. 边界情况测试
+3. 错误条件测试
+4. 边界值测试
+5. 性能测试（如果适用）
+6. 代码覆盖率目标
+7. pytest最佳实践
 
-Generate clean, readable test code using pytest framework.
+请生成干净、可读的测试代码。
+
+请用中文回答。
 """
 
 
@@ -90,18 +92,18 @@ async def generate_tests(code: str) -> GeneratedTestResult:
         
         # Create a detailed prompt for the agent
         prompt = f"""
-Generate comprehensive pytest test cases and test code for the following Python code:
+请为以下Python代码生成全面的pytest测试用例和测试代码（请用中文回答）：
 
-Code to test:
+待测试代码：
 ```python
 {code}
 ```
 
-Identified Test Cases:
-{', '.join(test_cases) if test_cases else 'None identified'}
+已识别的测试用例：
+{', '.join(test_cases) if test_cases else '未识别到测试用例'}
 
-Generate clean, readable test code using pytest framework.
-Include tests for normal cases, edge cases, and error conditions.
+请生成干净、可读的测试代码。
+包含正常情况、边界情况和错误条件的测试。
 """
         
         # Create a message for the agent

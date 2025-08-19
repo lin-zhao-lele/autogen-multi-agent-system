@@ -13,18 +13,19 @@ from agents.models import CodeReviewResult
 
 # System message for the code review agent
 REVIEW_AGENT_SYSTEM_MESSAGE = """
-You are an expert Python code reviewer. Review code for quality, PEP8 compliance, and best practices.
+你是一个专业的Python代码审查专家。审查代码的质量、PEP8合规性和最佳实践。
 
-When reviewing code, consider:
-1. PEP8 compliance and code style
-2. Code readability and maintainability
-3. Error handling and edge cases
-4. Performance and efficiency
-5. Security considerations
-6. Documentation and comments
-7. Best practices and design patterns
+审查代码时请考虑：
+1. PEP8合规性和代码风格
+2. 代码可读性和可维护性
+3. 错误处理和边界情况
+4. 性能和效率
+5. 安全考虑
+6. 最佳实践和设计模式
 
-Provide detailed feedback with specific suggestions for improvement.
+请提供详细的反馈和具体的改进建议。
+
+请用中文回答。
 """
 
 
@@ -133,14 +134,14 @@ async def review_code(code: str) -> CodeReviewResult:
         
         # Create a detailed prompt for the agent
         prompt = f"""
-Review the following Python code for quality, PEP8 compliance, and best practices:
+请审查以下代码的质量、PEP8合规性和最佳实践（请用中文回答）：
 
-Code:
-```python
+代码：
+```
 {code}
 ```
 
-Provide detailed feedback with specific suggestions for improvement.
+请提供详细的反馈和具体的改进建议。
 """
         
         # Create a message for the agent

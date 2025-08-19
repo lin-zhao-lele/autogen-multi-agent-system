@@ -12,17 +12,18 @@ from agents.provider import get_llm_model
 
 # System message for the requirements analysis agent
 REQUIREMENTS_AGENT_SYSTEM_MESSAGE = """
-You are an expert at analyzing and breaking down programming requirements. 
-Your task is to understand user requirements and create a detailed specification for code implementation.
+你是一个专业的编程需求分析专家。你的任务是理解用户需求并创建详细的代码实现规范。
 
-When analyzing requirements, consider:
-1. What programming language should be used
-2. What functionality needs to be implemented
-3. What inputs and outputs are expected
-4. Any specific constraints or requirements
-5. Complexity level of the implementation
+分析需求时请考虑：
+1. 应该使用什么编程语言
+2. 需要实现什么功能
+3. 预期的输入和输出是什么
+4. 任何特定的约束或要求
+5. 实现的复杂度级别
 
-Provide a clear, structured breakdown of the requirements that can be used by other agents to generate code.
+请提供清晰、结构化的需求分解，以便其他智能体生成代码。
+
+请用中文回答。
 """
 
 
@@ -70,7 +71,7 @@ async def analyze_requirements(user_requirements: str) -> Dict[str, Any]:
     try:
         # Create a message for the agent
         message = TextMessage(
-            content=f"Analyze the following requirements and provide a detailed specification: {user_requirements}",
+            content=f"请分析以下需求并提供详细的规范说明（请用中文回答）：{user_requirements}",
             source="user"
         )
         

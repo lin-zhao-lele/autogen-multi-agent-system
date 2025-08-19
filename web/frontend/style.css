@@ -82,16 +82,16 @@ body {
 }
 
 .code-block {
-    background-color: #2d2d2d;
-    color: #f8f8f2;
-    border-radius: 8px;
-    padding: 20px;
-    font-family: 'Fira Code', 'Courier New', monospace;
-    font-size: 14px;
-    line-height: 1.5;
-    max-height: 400px;
-    overflow: auto;
-    margin: 15px 0;
+    background-color: transparent;
+    color: inherit;
+    border-radius: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    max-height: none;
+    overflow: visible;
+    margin: 0;
 }
 
 .nav-tabs .nav-link {
@@ -188,27 +188,32 @@ body {
         padding: 15px;
     }
     
-    .code-block {
+    .code-content {
         font-size: 12px;
         padding: 15px;
+    }
+    
+    .text-content {
+        padding: 10px;
+        font-size: 14px;
     }
 }
 
 /* Scrollbar styling for code blocks */
-.code-block::-webkit-scrollbar {
+.code-content::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 
-.code-block::-webkit-scrollbar-track {
+.code-content::-webkit-scrollbar-track {
     background: #1e1e1e;
 }
 
-.code-block::-webkit-scrollbar-thumb {
+.code-content::-webkit-scrollbar-thumb {
     background: #555;
     border-radius: 4px;
 }
 
-.code-block::-webkit-scrollbar-thumb:hover {
+.code-content::-webkit-scrollbar-thumb:hover {
     background: #777;
 }

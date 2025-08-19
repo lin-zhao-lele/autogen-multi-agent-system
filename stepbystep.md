@@ -34,4 +34,7 @@ python -m web.main
 
 http://127.0.0.1:9000/static/index.html
 
+
+
+分析INITIAL.md和CLAUDE.md以及 \PRPs\autogen-multi-agent-system.md 以便进行下一步的修改
 ```

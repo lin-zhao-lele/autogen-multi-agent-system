@@ -1,81 +1,81 @@
-name: "AutoGen Multi-Agent Code Generation System"
+name: "AutoGen 多智能体代码生成系统"
 description: |
 
-## Purpose
-Create a multi-agent system using the AutoGen framework that can generate, review, optimize, and test Python code based on user requirements through a web interface.
+## 目的
+使用AutoGen框架创建一个多智能体系统，能够通过Web界面根据用户需求生成、审查、优化和测试Python代码。
 
-## Core Principles
-1. **Context is King**: Include ALL necessary documentation, examples, and caveats
-2. **Validation Loops**: Provide executable tests/lints the AI can run and fix
-3. **Information Dense**: Use keywords and patterns from the codebase
-4. **Progressive Success**: Start simple, validate, then enhance
-5. **Global rules**: Be sure to follow all rules in CLAUDE.md
+## 核心原则
+1. **上下文为王**: 包含所有必要的文档、示例和注意事项
+2. **验证循环**: 提供可执行的测试/lint，让AI可以运行和修复
+3. **信息密集**: 使用代码库中的关键词和模式
+4. **渐进式成功**: 从简单开始，验证，然后增强
+5. **全局规则**: 确保遵循CLAUDE.md中的所有规则
 
 ---
 
-## Goal
-Build a multi-agent system using the AutoGen framework that:
-- Takes user requirements for Python code development
-- Generates Python code based on those requirements
-- Reviews and checks code quality against PEP8 standards
-- Optimizes and fixes code for better performance and readability
-- Provides a web-based interface for user interaction
-- Includes five specialized agents:
-  - Requirements Analysis Agent
-  - Code Generation Agent
-  - Code Review Agent
-  - Code Optimization Agent
-  - Testing Agent
+## 目标
+构建一个使用AutoGen框架的多智能体系统，能够：
+- 接收用户对Python代码开发的需求
+- 根据这些需求生成Python代码
+- 审查和检查代码质量，确保符合PEP8标准
+- 优化和修复代码以提高性能和可读性
+- 提供基于Web的用户交互界面
+- 包含五个专门的智能体：
+  - 需求分析智能体
+  - 代码生成智能体
+  - 代码审查智能体
+  - 代码优化智能体
+  - 测试智能体
 
-## Why
-- [Business value and user impact] Enable non-programmers to generate quality Python code through natural language descriptions
-- [Integration with existing features] Leverages AutoGen's proven multi-agent framework for complex task automation
-- [Problems this solves and for whom] Solves the problem of manual code writing, review, and optimization for developers and non-developers alike
+## 为什么
+- [业务价值和用户影响] 使非程序员能够通过自然语言描述生成高质量的Python代码
+- [与现有功能集成] 利用AutoGen经过验证的多智能体框架进行复杂任务自动化
+- [解决的问题和受益对象] 为开发者和非开发者解决手动编写、审查和优化代码的问题
 
-## What
-[User-visible behavior and technical requirements]
-- Web interface for users to input requirements
-- Multi-agent system that processes requirements and generates code
-- Code quality checking and optimization
-- Automated test generation and execution
-- Real-time progress updates through the web interface
+## 功能
+[用户可见行为和技术要求]
+- 用户输入需求的Web界面
+- 处理需求并生成代码的多智能体系统
+- 代码质量检查和优化
+- 自动化测试生成和执行
+- 通过Web界面实时更新进度
 
-### Success Criteria
-- [ ] System can generate Python code from natural language requirements
-- [ ] Code passes PEP8 compliance checks
-- [ ] Code is optimized for performance and readability
-- [ ] Automated tests are generated and pass
-- [ ] Web interface allows user interaction and displays results
-- [ ] All agents work together in a coordinated manner
+### 成功标准
+- [ ] 系统能够从自然语言需求生成Python代码
+- [ ] 代码通过PEP8合规性检查
+- [ ] 代码经过性能和可读性优化
+- [ ] 自动生成测试并通过测试
+- [ ] Web界面允许用户交互并显示结果
+- [ ] 所有智能体协调工作
 
-## All Needed Context
+## 所需上下文
 
-### Documentation & References (list all context needed to implement the feature)
+### 文档和参考资料（实现功能所需的所有上下文）
 ```yaml
-# MUST READ - Include these in your context window
+# 必须阅读 - 将这些包含在上下文窗口中
 - url: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/index.html
-  why: Core AutoGen AgentChat API documentation for building multi-agent systems
+  why: 构建多智能体系统的核心AutoGen AgentChat API文档
 
 - url: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/agents.html
-  why: Understanding different agent types and their capabilities
+  why: 理解不同智能体类型及其能力
 
 - url: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html
-  why: Team collaboration patterns and group chat implementations
+  why: 团队协作模式和群聊实现
 
 - url: https://fastapi.tiangolo.com/
-  why: FastAPI documentation for building the web interface
+  why: 构建Web界面的FastAPI文档
 
 - file: /Users/lin/Documents/AICoding/autogen-multi-agent-system/use-cases/pydantic-ai/examples/main_agent_reference/cli.py
-  why: Pattern for building command-line interfaces with agent interactions
+  why: 构建命令行界面与智能体交互的模式
 
 - file: /Users/lin/Documents/AICoding/autogen-multi-agent-system/use-cases/mcp-server/examples/database-tools.ts
-  why: Example of tool registration and permission-based access patterns
+  why: 工具注册和基于权限的访问模式示例
 
 - docfile: /Users/lin/Documents/AICoding/autogen-multi-agent-system/CLAUDE.md
-  why: Project-specific coding standards and guidelines
+  why: 项目特定的编码标准和指南
 ```
 
-### Current Codebase tree (run `tree` in the root of the project) to get an overview of the codebase
+### 当前代码库结构（在项目根目录运行`tree`获取概览）
 ```bash
 .
 ├── CLAUDE.md
@@ -96,213 +96,212 @@ Build a multi-agent system using the AutoGen framework that:
 └── venv_linux
 ```
 
-### Desired Codebase tree with files to be added and responsibility of file
+### 期望的代码库结构（要添加的文件及其职责）
 ```bash
 .
-├── agents/
-│   ├── __init__.py               # Package init
-│   ├── requirements_agent.py     # Requirements analysis agent
-│   ├── codegen_agent.py          # Code generation agent
-│   ├── review_agent.py           # Code review agent
-│   ├── optimization_agent.py     # Code optimization agent
-│   ├── testing_agent.py          # Testing agent
-│   ├── provider.py              # LLM provider configuration
-│   └── models.py                # Pydantic models for data validation
-├── tools/
-│   ├── __init__.py              # Package init
-│   ├── code_quality_tool.py     # Code quality checking tool
-│   └── code_optimizer_tool.py   # Code optimization tool
-├── web/
-│   ├── __init__.py              # Package init
-│   ├── main.py                  # FastAPI application entry point
-│   ├── api.py                   # API routes
-│   └── frontend/                # Frontend files (HTML, CSS, JS)
-├── config/
-│   ├── __init__.py              # Package init
-│   └── settings.py              # Environment and config management
-├── tests/
-│   ├── __init__.py              # Package init
+├── agents/                 # 智能体模块
+│   ├── __init__.py               # 包初始化
+│   ├── requirements_agent.py     # 需求分析智能体
+│   ├── codegen_agent.py          # 代码生成智能体
+│   ├── review_agent.py           # 代码审查智能体
+│   ├── optimization_agent.py     # 代码优化智能体
+│   ├── testing_agent.py          # 测试智能体
+│   ├── provider.py              # LLM提供商配置
+│   └── models.py                # Pydantic数据验证模型
+├── tools/                  # 工具模块
+│   ├── __init__.py              # 包初始化
+│   ├── code_quality_tool.py     # 代码质量检查工具
+│   └── code_optimizer_tool.py   # 代码优化工具
+├── web/                    # Web界面
+│   ├── __init__.py              # 包初始化
+│   ├── main.py                  # FastAPI应用入口点
+│   ├── api.py                   # API路由
+│   └── frontend/                # 前端文件（HTML, CSS, JS）
+├── config/                 # 配置管理
+│   ├── __init__.py              # 包初始化
+│   └── settings.py              # 环境和配置管理
+├── tests/                  # 测试套件
+│   ├── __init__.py              # 包初始化
 │   ├── test_requirements_agent.py
 │   ├── test_codegen_agent.py
 │   ├── test_review_agent.py
 │   ├── test_optimization_agent.py
 │   ├── test_testing_agent.py
 │   └── test_web_interface.py
-├── utils/
-│   ├── __init__.py              # Package init
-│   └── code_validator.py        # Code validation utilities
-├── .env.example                 # Environment variables template
-├── requirements.txt             # Updated dependencies
-└── README.md                   # Comprehensive documentation
+├── utils/                  # 工具函数
+│   ├── __init__.py              # 包初始化
+│   └── code_validator.py        # 代码验证工具
+├── .env.example                 # 环境变量模板
+├── requirements.txt             # 更新的依赖项
+└── README.md                   # 全面的文档
 ```
 
-## Implementation Blueprint
+## 实现蓝图
 
-### Data models and structure
+### 数据模型和结构
 
-Create the core data models, we ensure type safety and consistency.
+创建核心数据模型，确保类型安全和一致性。
 ```python
-# Models for agent communication and data validation
-# - Pydantic models for requirements, code, and test cases
-# - Data structures for agent messages and responses
-# - Configuration models for LLM settings
+# 智能体通信和数据验证的模型
+# - 需求、代码和测试用例的Pydantic模型
+# - 智能体消息和响应的数据结构
+# - LLM设置的配置模型
 
 class CodeGenerationRequest(BaseModel):
-    """Model for code generation requests"""
+    """代码生成请求模型"""
     requirements: str
     language: str = "python"
     complexity: str = "medium"
 
 class CodeReviewResult(BaseModel):
-    """Model for code review results"""
+    """代码审查结果模型"""
     code: str
     issues: List[str]
     suggestions: List[str]
     pep8_compliance: bool
 
 class CodeOptimizationResult(BaseModel):
-    """Model for code optimization results"""
+    """代码优化结果模型"""
     original_code: str
     optimized_code: str
     improvements: List[str]
     performance_gain: float
 
 class TestGenerationResult(BaseModel):
-    """Model for test generation results"""
+    """测试生成结果模型"""
     test_code: str
     test_cases: List[str]
     coverage_percentage: float
 ```
 
-### list of tasks to be completed to fullfill the PRP in the order they should be completed
+### 完成任务列表（按顺序完成PRP）
 
 ```yaml
-Task 1:
-CREATE config/settings.py:
-  - MIRROR pattern from: use-cases/pydantic-ai/examples/main_agent_reference/settings.py
-  - IMPLEMENT environment variable loading with python-dotenv
-  - DEFINE configuration for LLM providers and API keys
+任务1:
+创建 config/settings.py:
+  - 镜像模式来自: use-cases/pydantic-ai/examples/main_agent_reference/settings.py
+  - 使用python-dotenv实现环境变量加载
+  - 定义LLM提供商和API密钥的配置
 
-Task 2:
-CREATE agents/provider.py:
-  - MIRROR pattern from: use-cases/pydantic-ai/examples/main_agent_reference/providers.py
-  - IMPLEMENT LLM provider configuration for OpenAI, Anthropic, etc.
-  - DEFINE model selection and API key management
+任务2:
+创建 agents/provider.py:
+  - 镜像模式来自: use-cases/pydantic-ai/examples/main_agent_reference/providers.py
+  - 实现OpenAI、Anthropic等的LLM提供商配置
+  - 定义模型选择和API密钥管理
 
-Task 3:
-CREATE agents/models.py:
-  - MIRROR pattern from: use-cases/pydantic-ai/examples/main_agent_reference/models.py
-  - IMPLEMENT Pydantic models for data validation
-  - DEFINE data structures for agent communication
+任务3:
+创建 agents/models.py:
+  - 镜像模式来自: use-cases/pydantic-ai/examples/main_agent_reference/models.py
+  - 实现Pydantic数据验证模型
+  - 定义智能体通信的数据结构
 
-Task 4:
-CREATE agents/requirements_agent.py:
-  - IMPLEMENT AssistantAgent for requirements analysis
-  - DEFINE system prompt for understanding user requirements
-  - CREATE tool for breaking down complex requirements
+任务4:
+创建 agents/requirements_agent.py:
+  - 实现需求分析的AssistantAgent
+  - 定义理解用户需求的系统提示
+  - 创建分解复杂需求的工具
 
-Task 5:
-CREATE agents/codegen_agent.py:
-  - IMPLEMENT AssistantAgent for code generation
-  - DEFINE system prompt for Python code generation
-  - CREATE tool for generating code based on requirements
+任务5:
+创建 agents/codegen_agent.py:
+  - 实现代码生成的AssistantAgent
+  - 定义Python代码生成的系统提示
+  - 创建基于需求生成代码的工具
 
-Task 6:
-CREATE agents/review_agent.py:
-  - IMPLEMENT AssistantAgent for code review
-  - DEFINE system prompt for code quality assessment
-  - CREATE tool for PEP8 compliance checking
+任务6:
+创建 agents/review_agent.py:
+  - 实现代码审查的AssistantAgent
+  - 定义代码质量评估的系统提示
+  - 创建PEP8合规性检查的工具
 
-Task 7:
-CREATE agents/optimization_agent.py:
-  - IMPLEMENT AssistantAgent for code optimization
-  - DEFINE system prompt for code performance improvements
-  - CREATE tool for code refactoring and optimization
+任务7:
+创建 agents/optimization_agent.py:
+  - 实现代码优化的AssistantAgent
+  - 定义代码性能改进的系统提示
+  - 创建代码重构和优化的工具
 
-Task 8:
-CREATE agents/testing_agent.py:
-  - IMPLEMENT AssistantAgent for test generation
-  - DEFINE system prompt for test case creation
-  - CREATE tool for generating pytest test cases
+任务8:
+创建 agents/testing_agent.py:
+  - 实现测试生成的AssistantAgent
+  - 定义测试用例创建的系统提示
+  - 创建生成pytest测试用例的工具
 
-Task 9:
-CREATE tools/code_quality_tool.py:
-  - IMPLEMENT tool for code quality checking
-  - INTEGRATE with pycodestyle or flake8 for PEP8 compliance
-  - RETURN detailed feedback on code issues
+任务9:
+创建 tools/code_quality_tool.py:
+  - 实现代码质量检查工具
+  - 集成pycodestyle或flake8进行PEP8合规性检查
+  - 返回代码问题的详细反馈
 
-Task 10:
-CREATE tools/code_optimizer_tool.py:
-  - IMPLEMENT tool for code optimization suggestions
-  - ANALYZE code for performance improvements
-  - PROVIDE refactored code with explanations
+任务10:
+创建 tools/code_optimizer_tool.py:
+  - 实现代码优化建议工具
+  - 分析代码以进行性能改进
+  - 提供重构后的代码和解释
 
-Task 11:
-CREATE web/main.py:
-  - MIRROR pattern from: FastAPI documentation
-  - IMPLEMENT FastAPI application setup
-  - DEFINE main application entry point
+任务11:
+创建 web/main.py:
+  - 镜像模式来自: FastAPI文档
+  - 实现FastAPI应用设置
+  - 定义主应用入口点
 
-Task 12:
-CREATE web/api.py:
-  - IMPLEMENT API routes for user interaction
-  - DEFINE endpoints for submitting requirements and getting results
-  - INTEGRATE with agent system for processing requests
+任务12:
+创建 web/api.py:
+  - 实现用户交互的API路由
+  - 定义提交需求和获取结果的端点
+  - 与智能体系统集成处理请求
 
-Task 13:
-CREATE utils/code_validator.py:
-  - IMPLEMENT code validation utilities
-  - INTEGRATE with pylint or similar tools
-  - PROVIDE detailed error reporting
+任务13:
+创建 utils/code_validator.py:
+  - 实现代码验证工具
+  - 集成pylint或类似工具
+  - 提供详细的错误报告
 
-Task 14:
-CREATE tests/test_requirements_agent.py:
-  - MIRROR pattern from: use-cases/pydantic-ai/examples/testing_examples/test_agent_patterns.py
-  - IMPLEMENT unit tests for requirements agent
-  - TEST requirements parsing and breakdown
+任务14:
+创建 tests/test_requirements_agent.py:
+  - 镜像模式来自: use-cases/pydantic-ai/examples/testing_examples/test_agent_patterns.py
+  - 实现需求分析智能体的单元测试
+  - 测试需求解析和分解
 
-Task 15:
-CREATE tests/test_codegen_agent.py:
-  - IMPLEMENT unit tests for code generation agent
-  - TEST code generation from requirements
-  - VERIFY generated code syntax
+任务15:
+创建 tests/test_codegen_agent.py:
+  - 实现代码生成智能体的单元测试
+  - 测试从需求生成代码
+  - 验证生成的代码语法
 
-Task 16:
-CREATE tests/test_review_agent.py:
-  - IMPLEMENT unit tests for code review agent
-  - TEST code quality assessment
-  - VERIFY PEP8 compliance checking
+任务16:
+创建 tests/test_review_agent.py:
+  - 实现代码审查智能体的单元测试
+  - 测试代码质量评估
+  - 验证PEP8合规性检查
 
-Task 17:
-CREATE tests/test_optimization_agent.py:
-  - IMPLEMENT unit tests for code optimization agent
-  - TEST code performance improvements
-  - VERIFY optimization suggestions
+任务17:
+创建 tests/test_optimization_agent.py:
+  - 实现代码优化智能体的单元测试
+  - 测试代码性能改进
+  - 验证优化建议
 
-Task 18:
-CREATE tests/test_testing_agent.py:
-  - IMPLEMENT unit tests for testing agent
-  - TEST test case generation
-  - VERIFY test code validity
+任务18:
+创建 tests/test_testing_agent.py:
+  - 实现测试智能体的单元测试
+  - 测试测试用例生成
+  - 验证测试代码有效性
 
-Task 19:
-CREATE tests/test_web_interface.py:
-  - IMPLEMENT integration tests for web interface
-  - TEST API endpoints
-  - VERIFY user interaction flow
+任务19:
+创建 tests/test_web_interface.py:
+  - 实现Web界面的集成测试
+  - 测试API端点
+  - 验证用户交互流程
 
-Task 20:
-CREATE web/frontend/:
-  - IMPLEMENT basic HTML/CSS/JavaScript frontend
-  - CREATE user interface for submitting requirements
-  - DISPLAY results from agent processing
+任务20:
+创建 web/frontend/:
+  - 实现基本的HTML/CSS/JavaScript前端
+  - 创建提交需求的用户界面
+  - 显示智能体处理结果
 ```
 
-
-### Per task pseudocode as needed added to each task
+### 每项任务的伪代码（根据需要添加）
 ```python
-# Task 1: Settings Configuration
-# Pseudocode for environment variable management
+# 任务1: 设置配置
+# 环境变量管理的伪代码
 from pydantic_settings import BaseSettings
 from pydantic import Field
 from dotenv import load_dotenv
@@ -310,7 +309,7 @@ from dotenv import load_dotenv
 class Settings(BaseSettings):
     model_config = ConfigDict(env_file=".env", env_file_encoding="utf-8")
     
-    # LLM Configuration
+    # LLM配置
     llm_provider: str = Field(default="openai")
     llm_api_key: str = Field(...)
     llm_model: str = Field(default="gpt-4")
@@ -319,165 +318,185 @@ def load_settings() -> Settings:
     load_dotenv()
     return Settings()
 
-# Task 4: Requirements Analysis Agent
-# Pseudocode for requirements agent
+# 任务4: 需求分析智能体
+# 需求分析智能体的伪代码
 from autogen import AssistantAgent
 from agents.provider import get_llm_model
 
 requirements_agent = AssistantAgent(
     name="RequirementsAgent",
-    system_message="""You are an expert at analyzing and breaking down programming requirements.
-    Your task is to understand user requirements and create a detailed specification.""",
+    system_message="""你是一个专业的编程需求分析专家。你的任务是理解用户需求并创建详细的代码实现规范。
+
+分析需求时请考虑：
+1. 应该使用什么编程语言
+2. 需要实现什么功能
+3. 预期的输入和输出是什么
+4. 任何特定的约束或要求
+5. 实现的复杂度级别
+
+请提供清晰、结构化的需求分解，以便其他智能体生成代码。
+
+请用中文回答。""",
     llm_config=get_llm_model()
 )
 
 @requirements_agent.tool
 async def breakdown_requirements(requirements: str) -> dict:
-    """Break down complex requirements into smaller tasks"""
-    # Implementation here
+    """将复杂需求分解为更小的任务"""
+    # 实现代码
     pass
 
-# Task 5: Code Generation Agent
-# Pseudocode for code generation agent
+# 任务5: 代码生成智能体
+# 代码生成智能体的伪代码
 codegen_agent = AssistantAgent(
     name="CodegenAgent",
-    system_message="""You are an expert Python developer. Generate clean, efficient, 
-    and well-documented Python code based on the provided requirements.""",
+    system_message="""你是一个专业的Python开发专家。根据提供的需求生成干净、高效、文档完善的Python代码。
+
+生成代码时请遵循以下准则：
+1. 编写符合PEP8标准的干净、可读代码
+2. 不要注释
+3. 处理边界情况和错误条件
+4. 编写性能良好的高效代码
+5. 遵循Python最佳实践和约定
+
+你的回答应该只包含生成的代码，不要包含额外的解释或markdown格式。
+
+请用中文回答。""",
     llm_config=get_llm_model()
 )
 
 @codegen_agent.tool
 async def generate_code(specification: dict) -> str:
-    """Generate Python code based on detailed specification"""
-    # Implementation here
+    """根据详细规范生成Python代码"""
+    # 实现代码
     pass
 
-# Task 9: Code Quality Tool
-# Pseudocode for code quality checking
+# 任务9: 代码质量工具
+# 代码质量检查的伪代码
 import subprocess
 
 async def check_code_quality(code: str) -> dict:
-    """Check code quality using pycodestyle"""
-    # Write code to temporary file
-    # Run pycodestyle on the file
-    # Parse results and return structured feedback
+    """使用pycodestyle检查代码质量"""
+    # 将代码写入临时文件
+    # 在文件上运行pycodestyle
+    # 解析结果并返回结构化反馈
     pass
 ```
 
-### Integration Points
+### 集成点
 ```yaml
-DATABASE:
-  - No database required for initial implementation
+数据库:
+  - 初始实现不需要数据库
   
-CONFIG:
-  - add to: config/settings.py
-  - pattern: "LLM_PROVIDER = os.getenv('LLM_PROVIDER', 'openai')"
-  - pattern: "LLM_API_KEY = os.getenv('LLM_API_KEY')"
+配置:
+  - 添加到: config/settings.py
+  - 模式: "LLM_PROVIDER = os.getenv('LLM_PROVIDER', 'openai')"
+  - 模式: "LLM_API_KEY = os.getenv('LLM_API_KEY')"
   
-ROUTES:
-  - add to: web/api.py  
-  - pattern: "app.post('/generate-code', generate_code_endpoint)"
-  - pattern: "app.get('/code-status/{task_id}', get_code_status)"
+路由:
+  - 添加到: web/api.py  
+  - 模式: "app.post('/generate-code', generate_code_endpoint)"
+  - 模式: "app.get('/code-status/{task_id}', get_code_status)"
 ```
 
-## Validation Loop
+## 验证循环
 
-### Level 1: Syntax & Style
+### 级别1: 语法和样式
 ```bash
-# Run these FIRST - fix any errors before proceeding
-ruff check src/ --fix  # Auto-fix what's possible
-mypy src/              # Type checking
+# 首先运行这些 - 在继续之前修复任何错误
+ruff check src/ --fix  # 自动修复可能的问题
+mypy src/              # 类型检查
 
-# Expected: No errors. If errors, READ the error and fix.
+# 期望: 没有错误。如果有错误，阅读错误并修复。
 ```
 
-### Level 2: Unit Tests each new feature/file/function use existing test patterns
+### 级别2: 单元测试（每个新功能/文件/函数使用现有测试模式）
 ```python
-# CREATE tests/test_agents.py with these test cases:
+# 创建 tests/test_agents.py 包含这些测试用例：
 def test_requirements_agent():
-    """Test requirements agent can parse and breakdown requirements"""
-    # Test with sample requirements
-    # Verify structured output
+    """测试需求分析智能体可以解析和分解需求"""
+    # 使用示例需求进行测试
+    # 验证结构化输出
     pass
 
 def test_code_generation_agent():
-    """Test code generation agent produces valid Python code"""
-    # Test with sample specification
-    # Verify code syntax and structure
+    """测试代码生成智能体产生有效的Python代码"""
+    # 使用示例规范进行测试
+    # 验证代码语法和结构
     pass
 
 def test_code_review_agent():
-    """Test code review agent identifies issues correctly"""
-    # Test with sample code containing known issues
-    # Verify issue detection and suggestions
+    """测试代码审查智能体正确识别问题"""
+    # 使用包含已知问题的示例代码进行测试
+    # 验证问题检测和建议
     pass
 
 def test_code_optimization_agent():
-    """Test code optimization agent provides meaningful improvements"""
-    # Test with sample code that can be optimized
-    # Verify optimization suggestions
+    """测试代码优化智能体提供有意义的改进"""
+    # 使用可以优化的示例代码进行测试
+    # 验证优化建议
     pass
 
 def test_testing_agent():
-    """Test testing agent generates valid test cases"""
-    # Test with sample code
-    # Verify generated test code is syntactically correct
+    """测试测试智能体生成有效的测试用例"""
+    # 使用示例代码进行测试
+    # 验证生成的测试代码语法正确
     pass
 ```
 
 ```bash
-# Run and iterate until passing:
+# 运行并迭代直到通过：
 uv run pytest tests/test_agents.py -v
-# If failing: Read error, understand root cause, fix code, re-run (never mock to pass)
+# 如果失败: 阅读错误，理解根本原因，修复代码，重新运行（不要mock来通过）
 ```
 
-### Level 3: Integration Test
+### 级别3: 集成测试
 ```bash
-# Start the web service
+# 启动Web服务
 uv run python -m web.main --dev
 
-# Test the code generation endpoint
+# 测试代码生成端点
 curl -X POST http://localhost:8000/generate-code \
   -H "Content-Type: application/json" \
-  -d '{"requirements": "Create a function that calculates fibonacci numbers", "language": "python"}'
+  -d '{"requirements": "创建一个计算斐波那契数的函数", "language": "python"}'
 
-# Expected: {"status": "success", "task_id": "..."}
-# Then check status and results
+# 期望: {"status": "success", "task_id": "..."}
+# 然后检查状态和结果
 curl http://localhost:8000/code-status/{task_id}
 
-# If error: Check logs for stack trace
+# 如果错误: 检查日志中的堆栈跟踪
 ```
 
-### Level 4: End-to-End Test
+### 级别4: 端到端测试
 ```bash
-# Test complete workflow through web interface
-# 1. Submit requirements via web form
-# 2. Wait for agent processing
-# 3. Verify generated code
-# 4. Check code review results
-# 5. Verify optimized code
-# 6. Check generated tests
+# 通过Web界面测试完整工作流程
+# 1. 通过Web表单提交需求
+# 2. 等待智能体处理
+# 3. 验证生成的代码
+# 4. 检查代码审查结果
+# 5. 验证优化后的代码
+# 6. 检查生成的测试
 ```
 
-## Final validation Checklist
-- [ ] All unit tests pass: `uv run pytest tests/ -v`
-- [ ] No linting errors: `uv run ruff check src/`
-- [ ] No type errors: `uv run mypy src/`
-- [ ] Web interface works: Manual test via browser
-- [ ] Agent coordination works: Requirements → Code → Review → Optimize → Test
-- [ ] Error cases handled gracefully
-- [ ] Logs are informative but not verbose
-- [ ] Documentation updated if needed
+## 最终验证清单
+- [ ] 所有单元测试通过: `uv run pytest tests/ -v`
+- [ ] 没有lint错误: `uv run ruff check src/`
+- [ ] 没有类型错误: `uv run mypy src/`
+- [ ] Web界面工作正常: 通过浏览器手动测试
+- [ ] 智能体协调工作: 需求 → 代码 → 审查 → 优化 → 测试
+- [ ] 错误情况得到优雅处理
+- [ ] 日志信息丰富但不冗长
+- [ ] 文档已根据需要更新
 
 ---
 
-## Anti-Patterns to Avoid
-- ❌ Don't create new patterns when existing ones work
-- ❌ Don't skip validation because "it should work"  
-- ❌ Don't ignore failing tests - fix them
-- ❌ Don't use sync functions in async context
-- ❌ Don't hardcode values that should be config
-- ❌ Don't catch all exceptions - be specific
-- ❌ Don't ignore AutoGen's async requirements
-- ❌ Don't forget to validate environment variables
-- ❌ Don't expose sensitive information in logs or responses
+## 要避免的反模式
+- ❌ 不要在有现有模式可用时创建新模式
+- ❌ 不要因为"应该能工作"而跳过验证  
+- ❌ 不要忽略失败的测试 - 修复它们
+- ❌ 不要在异步上下文中使用同步函数
+- ❌ 不要硬编码应该配置的值
+- ❌ 不要捕获所有异常 - 要具体
+- ❌ 不要忽略AutoGen的异步要求
+- ❌ 不要忘记验证环境变量
+- ❌ 不要在日志或响应中暴露敏感信息

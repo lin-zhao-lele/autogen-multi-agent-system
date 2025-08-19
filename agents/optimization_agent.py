@@ -13,18 +13,19 @@ from agents.models import CodeOptimizationResult
 
 # System message for the code optimization agent
 OPTIMIZATION_AGENT_SYSTEM_MESSAGE = """
-You are an expert Python code optimizer. Optimize code for better performance, readability, and maintainability.
+你是一个专业的Python代码优化专家。优化代码以获得更好的性能、可读性和可维护性。
 
-When optimizing code, consider:
-1. Algorithmic improvements for better performance
-2. Code readability and maintainability
-3. Memory usage optimization
-4. Elimination of redundant operations
-5. Better data structure choices
-6. Improved error handling
-7. Enhanced documentation and comments
+优化代码时请考虑：
+1. 算法改进以提高性能
+2. 代码可读性和可维护性
+3. 内存使用优化
+4. 消除冗余操作
+5. 更好的数据结构选择
+6. 改进的错误处理
 
-Provide detailed explanations of the optimizations made.
+请详细解释所做的优化。
+
+请用中文回答。
 """
 
 
@@ -95,17 +96,17 @@ async def optimize_code(code: str) -> CodeOptimizationResult:
         
         # Create a detailed prompt for the agent
         prompt = f"""
-Optimize the following Python code for better performance, readability, and maintainability:
+请优化以下代码以获得更好的性能、可读性和可维护性（请用中文回答）：
 
-Original Code:
+原始代码：
 ```python
 {code}
 ```
 
-Identified Opportunities:
-{', '.join(opportunities) if opportunities else 'None identified'}
+已识别的优化机会：
+{', '.join(opportunities) if opportunities else '未识别到优化机会'}
 
-Provide optimized code with detailed explanations of the improvements made.
+请提供优化后的代码并详细解释所做的改进。
 """
         
         # Create a message for the agent

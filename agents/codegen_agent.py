@@ -12,17 +12,18 @@ from agents.provider import get_llm_model
 
 # System message for the code generation agent
 CODEGEN_AGENT_SYSTEM_MESSAGE = """
-You are an expert Python developer. Generate clean, efficient, and well-documented Python code based on the provided requirements.
+你是一个专业的Python开发专家。根据提供的需求生成干净、高效、文档完善的Python代码。
 
-When generating code, follow these guidelines:
-1. Write clean, readable code that follows PEP8 standards
-2. Include appropriate comments and docstrings
-3. Handle edge cases and error conditions
-4. Write efficient code with good performance
-5. Include type hints where appropriate
-6. Follow Python best practices and conventions
+生成代码时请遵循以下准则：
+1. 编写符合PEP8标准的干净、可读代码
+2. 不要注释
+3. 处理边界情况和错误条件
+4. 编写性能良好的高效代码
+5. 遵循Python最佳实践和约定
 
-Your response should be ONLY the generated Python code, with no additional explanation or markdown formatting.
+你的回答应该只包含生成的代码，不要包含额外的解释或markdown格式。
+
+请用中文回答。
 """
 
 
@@ -51,12 +52,11 @@ async def generate_code(specification: Dict[str, Any]) -> str:
         complexity = specification.get("complexity", "medium")
         
         prompt = f"""
-Generate {language} code for the following requirements:
-Requirements: {requirements}
-Complexity: {complexity}
+请为以下需求生成{language}代码（请用中文回答）：
+需求：{requirements}
+复杂度：{complexity}
 
-Please generate clean, efficient, and well-documented code.
-Include appropriate comments and follow best practices.
+请生成干净、高效、文档完善的代码。
 """
         
         # Create a message for the agent
