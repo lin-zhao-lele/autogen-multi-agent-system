@@ -18,7 +18,7 @@ This use case demonstrates how to use **Context Engineering** and the **PRP (Pro
 ```bash
 # Clone the context engineering repository
 git clone https://github.com/coleam00/Context-Engineering-Intro.git
-cd Context-Engineering-Intro/use-cases/mcp-server
+cd autogen-multi-agent-system/use-cases/mcp-server
 
 # Copy template to your new project directory
 python copy_template.py my-mcp-server-project

@@ -65,13 +65,13 @@ Build a multi-agent system using the AutoGen framework that:
 - url: https://fastapi.tiangolo.com/
   why: FastAPI documentation for building the web interface
 
-- file: /Users/lin/Documents/AICoding/Context-Engineering-Intro/use-cases/pydantic-ai/examples/main_agent_reference/cli.py
+- file: /Users/lin/Documents/AICoding/autogen-multi-agent-system/use-cases/pydantic-ai/examples/main_agent_reference/cli.py
   why: Pattern for building command-line interfaces with agent interactions
 
-- file: /Users/lin/Documents/AICoding/Context-Engineering-Intro/use-cases/mcp-server/examples/database-tools.ts
+- file: /Users/lin/Documents/AICoding/autogen-multi-agent-system/use-cases/mcp-server/examples/database-tools.ts
   why: Example of tool registration and permission-based access patterns
 
-- docfile: /Users/lin/Documents/AICoding/Context-Engineering-Intro/CLAUDE.md
+- docfile: /Users/lin/Documents/AICoding/autogen-multi-agent-system/CLAUDE.md
   why: Project-specific coding standards and guidelines
 ```
 

@@ -9,7 +9,7 @@ A comprehensive template for building production-grade AI agents using Pydantic 
 ```bash
 # Clone the context engineering repository
 git clone https://github.com/coleam00/Context-Engineering-Intro.git
-cd Context-Engineering-Intro/use-cases/pydantic-ai
+cd autogen-multi-agent-system/use-cases/pydantic-ai
 
 # 1. Copy this template to your new project
 python copy_template.py /path/to/my-agent-project

@@ -12,7 +12,7 @@
   <component name="TemplatesService">
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/claude-code-full-guide/PRPs/templates" />
+        <option value="$MODULE_DIR$/../Context-Engineering-Intro/claude-code-full-guide/PRPs/templates" />
       </list>
     </option>
   </component>
