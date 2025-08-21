@@ -28,7 +28,6 @@ REVIEW_AGENT_SYSTEM_MESSAGE = """
 请用中文回答。
 """
 
-
 def check_pep8_compliance(code: str) -> bool:
     """
     Check if code complies with PEP8 standards.
